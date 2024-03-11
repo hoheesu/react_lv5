@@ -6,5 +6,6 @@ export const store = configureStore({
   reducer: {
     modalState: stateModalSlice,
     todosFetch: todosReducer,
+    devTools: process.env.NODE_ENV !== "production",
   },
 });

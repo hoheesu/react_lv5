@@ -9,7 +9,7 @@ function Header() {
   const [isToken, setIsToken] = useState();
   const params = useParams();
   const cookie = new Cookies();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     const time = new Date();
@@ -19,6 +19,10 @@ function Header() {
       expires: time,
     });
     window.location.reload();
+  };
+
+  const goToMainPage = () => {
+    navigate("/");
   };
 
   useEffect(() => {
@@ -34,7 +38,9 @@ function Header() {
 
   return (
     <Nav>
-      <h1>윤준수 Todo</h1>
+      <button onClick={goToMainPage}>
+        <h1>윤준수 Todo</h1>
+      </button>
       {isToken ? <button onClick={handleLogout}>로그아웃</button> : null}
     </Nav>
   );
