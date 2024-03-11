@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../components/common/LoginForm";
+import UserInfoForm from "../components/common/UserInfoForm";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "../axios/api";
 import { LoginSignupLayout, H2, LoginSignupContainer } from "../styles/LoginFormStyleModule";
@@ -16,9 +16,9 @@ function Login() {
     <LoginSignupLayout>
       <H2>로그인 페이지</H2>
       <LoginSignupContainer>
-        <LoginForm handleUserApi={requestLogin} handleGotoPage={handleGotoSignup}>
+        <UserInfoForm getUserApi={requestLogin} handleGotoPage={handleGotoSignup}>
           로그인
-        </LoginForm>
+        </UserInfoForm>
       </LoginSignupContainer>
     </LoginSignupLayout>
   );

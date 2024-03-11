@@ -1,32 +1,31 @@
-import axios from "axios";
-import instance from "./axios";
+import { instance } from "./axios";
 import { Cookies } from "react-cookie";
-import { errorHandle } from "../redux/modules/errorModalSlice";
 
 const cookie = new Cookies();
 
-export const requestSignUp = async (userInfo, navigate, dispatch) => {
+export const requestSignUp = async (userInfo) => {
   try {
     const res = await instance.post("register", userInfo);
-    navigate("/login");
+    return "회원가입에 성공하셨습니다.";
   } catch (error) {
-    dispatch(errorHandle(error.response.data.message));
-    console.log(error.response.data.message);
+    return Promise.reject(error.response.data.message);
   }
 };
 
-export const requestLogin = async (userInfo, navigate, dispatch) => {
+export const requestLogin = async (userInfo) => {
   try {
     const res = await instance.post("login", userInfo);
     const { token } = res.data;
-    navigate("/");
-    const expirationDate = new Date(new Date().getTime() + 1 + 60000); // 현재 시간에 분을 더해 만료 시간 설정
-    return cookie.set("token", `Bearer ${token}`, {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 3540); // 현재 시간에 분을 더해 만료 시간 설정
+    cookie.set("token", `Bearer ${token}`, {
       path: "/",
-      expires: expirationDate,
+      expires: time,
     });
+    return "로그인 완료했습니다.";
   } catch (error) {
-    return dispatch(errorHandle(error.response.data.message));
+    console.log(error);
+    return Promise.reject(error.response.data.message);
   }
 };
 
@@ -37,9 +36,6 @@ export const requestUserCheck = async () => {
       headers: { authorization: token },
     });
     const { statusText } = res;
-    console.log(statusText);
     return statusText;
-  } catch (error) {
-    return error.response.data.message;
-  }
+  } catch (error) {}
 };

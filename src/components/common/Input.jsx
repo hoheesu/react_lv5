@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-function InputForm({ type, placeholder, valueState, onChangeFnc }) {
+function Input({ type, placeholder, valueState, onChangeFnc }) {
   return (
-    <Input
-      type={type === "id" ? "text" : "password"}
+    <InputStyle
+      type={type === "password" ? "password" : "text"}
       placeholder={placeholder}
       value={valueState}
       onChange={(e) => onChangeFnc(type, e.target.value)}
@@ -12,7 +12,7 @@ function InputForm({ type, placeholder, valueState, onChangeFnc }) {
   );
 }
 
-const Input = styled.input`
+const InputStyle = styled.input`
   border: 2px solid var(--color-black);
   transition: all 0.4s;
   &:focus {
@@ -21,4 +21,4 @@ const Input = styled.input`
   }
 `;
 
-export default InputForm;
+export default Input;

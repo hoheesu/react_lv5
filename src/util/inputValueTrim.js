@@ -1,1 +1,1 @@
-export const inputValueTrim = (inputValue) => (inputValue.trim() === "" ? false : true);
+export const inputValueTrim = (stringText) => (stringText.trim() === "" ? false : true);

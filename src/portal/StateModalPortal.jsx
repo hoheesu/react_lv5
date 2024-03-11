@@ -1,34 +1,34 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { errorHandle } from "../redux/modules/errorModalSlice";
+import { modalTextChange } from "../redux/modules/stateModalSlice";
 import styled from "styled-components";
-import ButtonForm from "../components/common/ButtonForm";
+import Button from "../components/common/Button";
 
-const ErrorModalPortal = () => {
+const StateModalPortal = () => {
   const navigate = useNavigate();
-  const errorModalText = useSelector((state) => state.errorModal.errorText);
-  const errorHandleFnc = useSelector((state) => state.errorModal.btnHandleFnc);
+  const modalText = useSelector((state) => state.modalState.modalText);
+  const routePath = useSelector((state) => state.modalState.routePath);
 
   const dispatch = useDispatch();
   const handleCloseModal = () => {
-    navigate(errorHandleFnc);
-    dispatch(errorHandle(""));
+    navigate(routePath);
+    dispatch(modalTextChange(""));
   };
   return (
     <>
       <Background onClick={handleCloseModal}></Background>
       <ModalMain>
-        <p>{errorModalText}</p>
+        <p>{modalText}</p>
         <ButtonBox>
-          <ButtonForm onClickFnc={handleCloseModal}>확인</ButtonForm>
+          <Button onClickFnc={handleCloseModal}>확인</Button>
         </ButtonBox>
       </ModalMain>
     </>
   );
 };
 
-export default ErrorModalPortal;
+export default StateModalPortal;
 
 const Background = styled.div`
   width: 100vw;
