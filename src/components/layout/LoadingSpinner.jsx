@@ -23,9 +23,10 @@ const bounce = keyframes`
 `;
 
 const MainContainer = styled.div`
-  width: 90vw;
-  margin: 0 auto;
-  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const DropletSpinnerContainer = styled.div`
