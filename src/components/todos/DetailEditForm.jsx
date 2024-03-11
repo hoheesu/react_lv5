@@ -7,6 +7,7 @@ import { inputValueTrim } from "../../util/inputValueTrim";
 import Input from "../common/Input";
 import Button from "../common/Button";
 import styled from "styled-components";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 function DetailEditForm() {
   const [editValue, setEditValue] = useState({
@@ -75,7 +76,7 @@ function DetailEditForm() {
           <Button>수정 하기</Button>
         </Form>
       ) : (
-        <p>...로딩중</p>
+        <LoadingSpinner />
       )}
     </FormContainer>
   );

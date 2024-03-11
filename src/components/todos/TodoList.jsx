@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTodos, getTodos } from "../../redux/modules/todosSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../common/Button";
 import { modalRoutePath, modalTextChange } from "../../redux/modules/stateModalSlice";
+import LoadingSpinner from "../layout/LoadingSpinner";
 
 function TodoList() {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -15,19 +17,26 @@ function TodoList() {
 
   const handleDelete = (id) => {
     (async () => {
+      setIsLoading(true);
       await dispatch(deleteTodos(id));
       dispatch(modalTextChange("삭제가 완료되었습니다."));
       dispatch(modalRoutePath(`${location.pathname}`));
+      setIsLoading(false);
       dispatch(getTodos(id));
     })();
   };
 
   useEffect(() => {
-    dispatch(getTodos());
+    (async () => {
+      setIsLoading(true);
+      await dispatch(getTodos());
+      setIsLoading(false);
+    })();
   }, []);
 
   return (
     <Container>
+      {isLoading ? <LoadingSpinner /> : null}
       {todos.map((todo, index) => (
         <TodoItem key={index}>
           <TodoContent>

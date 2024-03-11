@@ -3,9 +3,9 @@ import App from "./App";
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import PostTodo from "./pages/PostTodo";
-import TodoLists from "./pages/TodoLists";
-import TodoDetail from "./pages/TodoDetail";
+import PostTodo from "./pages/todos/PostTodo";
+import TodoLists from "./pages/todos/TodoLists";
+import TodoDetail from "./pages/todos/TodoDetail";
 
 export const router = createBrowserRouter([
   {

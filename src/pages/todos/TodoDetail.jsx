@@ -1,7 +1,7 @@
 import React from "react";
-import DetailEditForm from "../components/todos/DetailEditForm";
+import DetailEditForm from "../../components/todos/DetailEditForm";
 import styled from "styled-components";
-import { PageWrap } from "../styles/PageWrapFlexStyle";
+import { PageWrap } from "../../styles/PageWrapFlexStyle";
 
 function TodoDetail() {
   return (
